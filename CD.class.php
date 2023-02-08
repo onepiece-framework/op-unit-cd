@@ -64,4 +64,13 @@ class CD implements IF_UNIT
 			self::Git()->Push($branch_name);
 		}
 	}
+
+	/** Init
+	 *
+	 * @created    2023-02-05
+	 */
+	static function Init()
+	{
+
+	}
 }
