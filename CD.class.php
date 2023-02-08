@@ -1,9 +1,9 @@
 <?php
-/** op-unit-empty:/Empty.class.php
+/** op-unit-cd:/CD.class.php
  *
- * @created    2023-01-30
+ * @created    2023-02-05
  * @version    1.0
- * @package    op-unit-empty
+ * @package    op-unit-cd
  * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright  Tomoaki Nagahara All right reserved.
  */
@@ -21,19 +21,23 @@ namespace OP\UNIT;
 /** use
  *
  */
+use Exception;
 use OP\IF_UNIT;
 use OP\OP_CORE;
 use OP\OP_CI;
 
-/** Empty
+/** CD
  *
- * @created    2023-01-30
+ * @created    2023-02-05
  * @version    1.0
  * @package    op-unit-empty
  * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright  Tomoaki Nagahara All right reserved.
  */
-class Git implements IF_UNIT
+class CD implements IF_UNIT
 {
+	/** use
+	 *
+	 */
 	use OP_CORE, OP_CI;
 }
