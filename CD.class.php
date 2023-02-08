@@ -73,4 +73,18 @@ class CD implements IF_UNIT
 	{
 
 	}
+
+	/** Git
+	 *
+	 * @created    2023-02-05
+	 * @return     Git
+	 */
+	static function Git()
+	{
+		static $_git;
+		if(!$_git ){
+			$_git = OP()->Unit('Git');
+		}
+		return $_git;
+	}
 }
