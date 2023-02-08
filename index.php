@@ -1,9 +1,9 @@
 <?php
-/** op-unit-empty:/index.php
+/** op-unit-cd:/index.php
  *
  * @created    2023-01-30
  * @version    1.0
- * @package    op-unit-empty
+ * @package    op-unit-cd
  * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
  * @copyright  Tomoaki Nagahara All right reserved.
  */
