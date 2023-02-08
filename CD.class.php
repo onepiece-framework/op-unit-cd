@@ -40,4 +40,28 @@ class CD implements IF_UNIT
 	 *
 	 */
 	use OP_CORE, OP_CI;
+
+	/** Automaticall
+	 *
+	 * @created    2023-02-05
+	 */
+	static function Auto()
+	{
+		//	...
+		$prefix = '.ci_commit_id_';
+		foreach( glob("{$prefix}*") as $file ){
+			$branch_name      = substr($file, strlen($prefix));
+			$commit_id_saved  = file_get_contents($file);
+			$commit_id_branch = self::Git()->CommitID($branch_name);
+			D($file, $branch_name, $commit_id_saved, $commit_id_branch);
+
+			//	...
+			if( $commit_id_saved !== $commit_id_branch ){
+				throw new Exception("Does not match commit id. ({$file}={$commit_id_saved}, {$branch_name}={$commit_id_branch})");
+			}
+
+			//	...
+			self::Git()->Push($branch_name);
+		}
+	}
 }
