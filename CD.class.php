@@ -77,7 +77,7 @@ class CD implements IF_UNIT
 
 		//	Execute each branch name.
 		foreach( $branches as $branch_name ){
-			$commit_id_file   = ".ci_commit_id_{$branch_name}";
+			$commit_id_file   = OP()->Unit('CI')->GenerateFilename();
 			$commit_id_saved  = file_get_contents($commit_id_file);
 			$commit_id_branch = self::Git()->CommitID($branch_name);
 
