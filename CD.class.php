@@ -82,7 +82,7 @@ class CD implements IF_UNIT
 			$commit_id_branch = self::Git()->CommitID($branch_name);
 
 			//	...
-			if( OP()->Request('debug') ){
+			if( OP()->Request('debug') and ($commit_id_saved !== $commit_id_branch) ){
 				D($remote, $branch_name, $commit_id_file, $commit_id_saved, $commit_id_branch);
 			}
 
