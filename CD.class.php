@@ -92,7 +92,9 @@ class CD implements IF_UNIT
 			}
 
 			//	...
-			self::Git()->Push($remote, $branch_name);
+			if( $result = self::Git()->Push($remote, $branch_name) ){
+				echo $result . "\n";
+			}
 		}
 	}
 
