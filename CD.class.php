@@ -51,19 +51,23 @@ class CD implements IF_UNIT
 		$branches = [];
 
 		//	...
-		$remote = OP()->Request('remote') ?? 'origin';
+		$remote = OP()->Request('remote');
 		$branch = OP()->Request('branch');
+
+		//	Get the specified remote.
+		if( $remote ){
+			if( $remote === '\*' ){
+				$remotes = self::Git()->Remote()->List();
+			}else{
+				$remotes[] = $remote;
+			}
+		}else{
+			$remotes[] = 'origin';
+		}
 
 		//	Get the specified branch.
 		if( $branch ){
 			if( $branch === '\*' ){
-				/*
-				//	Generate inspected branches by .ci_commit_id files.
-				$prefix = '.ci_commit_id_';
-				foreach( glob("{$prefix}*") as $file ){
-					$branches[] = substr($file, strlen($prefix));
-				}
-				*/
 				//	Generate branches by instanced branch names.
 				$branches = self::Git()->Branches();
 			}else{
@@ -75,25 +79,29 @@ class CD implements IF_UNIT
 			$branches[] = self::Git()->CurrentBranch();
 		}
 
-		//	Execute each branch name.
-		foreach( $branches as $branch_name ){
-			$commit_id_file   = OP()->Unit('CI')->GenerateFilename();
-			$commit_id_saved  = file_get_contents($commit_id_file);
-			$commit_id_branch = self::Git()->CommitID($branch_name);
+		//	Execute each remote name.
+		foreach( $remotes as $remote ){
+			//	Execute each branch name.
+			foreach( $branches as $branch_name ){
+				//	...
+				$commit_id_file   = self::CI()->GenerateFilename($branch_name);
+				$commit_id_saved  = file_get_contents($commit_id_file);
+				$commit_id_branch = self::Git()->CommitID($branch_name);
 
-			//	...
-			if( OP()->Request('debug') and ($commit_id_saved !== $commit_id_branch) ){
-				D($remote, $branch_name, $commit_id_file, $commit_id_saved, $commit_id_branch);
-			}
+				//	...
+				if( OP()->Request('debug') and ($commit_id_saved !== $commit_id_branch) ){
+					D($remote, $branch_name, $commit_id_file, $commit_id_saved, $commit_id_branch);
+				}
 
-			//	...
-			if( $commit_id_saved !== $commit_id_branch ){
-				throw new Exception("Does not match commit id. ({$commit_id_file}={$commit_id_saved}, {$branch_name}={$commit_id_branch})");
-			}
+				//	...
+				if( $commit_id_saved !== $commit_id_branch ){
+					throw new Exception("Does not match commit id. ({$commit_id_file}={$commit_id_saved}, {$branch_name}={$commit_id_branch})");
+				}
 
-			//	...
-			if( $result = self::Git()->Push($remote, $branch_name) ){
-				echo $result . "\n";
+				//	...
+				if( $result = self::Git()->Push($remote, $branch_name) ){
+					echo $result . "\n";
+				}
 			}
 		}
 	}
