@@ -116,6 +116,16 @@ class CD implements IF_UNIT
 
 	}
 
+	/** CI
+	 *
+	 * @created    2023-02-17
+	 * @return     CI
+	 */
+	static function CI()
+	{
+		return OP()->Unit('CI');
+	}
+
 	/** Git
 	 *
 	 * @created    2023-02-05
