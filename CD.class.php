@@ -81,10 +81,6 @@ class CD implements IF_UNIT
 	 */
 	static function Git()
 	{
-		static $_git;
-		if(!$_git ){
-			$_git = OP()->Unit('Git');
-		}
-		return $_git;
+		return OP()->Unit('Git');
 	}
 }
