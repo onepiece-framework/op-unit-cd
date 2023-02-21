@@ -53,6 +53,7 @@ class CD implements IF_UNIT
 		//	...
 		$remote = OP()->Request('remote');
 		$branch = OP()->Request('branch');
+		$force  = OP()->Request('force') ? true: false;
 
 		//	Get the specified remote.
 		if( $remote ){
@@ -99,7 +100,7 @@ class CD implements IF_UNIT
 				}
 
 				//	...
-				if( $result = self::Git()->Push($remote, $branch_name) ){
+				if( $result = self::Git()->Push($remote, $branch_name, $force) ){
 					echo $result . "\n";
 				}
 			}
