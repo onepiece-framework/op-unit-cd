@@ -112,6 +112,7 @@ trait CD_2024
 		//	...
 		require_once(__DIR__.'/function/isCanPushToGithub.php');
 
+		/*
 		//	...
 		foreach( PathList() as $path ){
 
@@ -123,6 +124,7 @@ trait CD_2024
 				exit(__LINE__);
 			}
 		}
+		*/
 
 		//	op-core
 		chdir(_ROOT_CORE_);
@@ -133,6 +135,16 @@ trait CD_2024
 			$io = self::_PushGitRepository( $config['path'] );
 			//	...
 			if( $io === false ){
+				exit(__LINE__);
+			}
+		}
+
+		//	Submodules
+		chdir(_ROOT_GIT_);
+		foreach( \OP\UNIT\GIT\SubmoduleConfig() as $config ){
+			//	Always return to the core directory each time.
+			chdir(_ROOT_GIT_);
+			if(!self::_PushGitRepository( $config['path'] ) ){
 				exit(__LINE__);
 			}
 		}
