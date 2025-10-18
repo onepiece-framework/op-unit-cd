@@ -131,6 +131,15 @@ trait CD_2024
 			chdir(_ROOT_CORE_);
 			//
 			$io = self::_PushGitRepository( $config['path'] );
+			//	...
+			if( $io === false ){
+				exit(__LINE__);
+			}
+		}
+
+		//	Skeleton
+		if(!self::_PushGitRepository(_ROOT_GIT_) ){
+			exit(__LINE__);
 		}
 	}
 
