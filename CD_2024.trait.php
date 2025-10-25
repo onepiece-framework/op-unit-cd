@@ -142,17 +142,18 @@ trait CD_2024
 		}
 
 		//	Submodules
-		chdir(_ROOT_GIT_);
+		$git_root = OP()->Unit('Git')->Root();
+		chdir($git_root);
 		foreach( \OP\UNIT\GIT\SubmoduleConfig() as $config ){
 			//	Always return to the core directory each time.
-			chdir(_ROOT_GIT_);
+			chdir($git_root);
 			if(!self::_PushGitRepository( $config['path'] ) ){
 				exit(__LINE__);
 			}
 		}
 
 		//	Skeleton
-		if(!self::_PushGitRepository(_ROOT_GIT_) ){
+		if(!self::_PushGitRepository($git_root) ){
 			exit(__LINE__);
 		}
 	}
