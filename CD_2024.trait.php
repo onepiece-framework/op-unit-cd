@@ -127,6 +127,7 @@ trait CD_2024
 		*/
 
 		//	op-core
+		if( _OP_APP_BRANCH_ >= 2030 ){
 		chdir(_ROOT_CORE_);
 		foreach( \OP\UNIT\GIT\SubmoduleConfig() as $config ){
 			//	Always return to the core directory each time.
@@ -137,6 +138,7 @@ trait CD_2024
 			if( $io === false ){
 				exit(__LINE__);
 			}
+		}
 		}
 
 		//	Submodules
