@@ -18,6 +18,7 @@ namespace OP\UNIT\CD;
 //	...
 return [
 	'branch' => [
+		'php70',
 		'main',
 		'2020',
 		'2022',
