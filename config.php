@@ -6,9 +6,15 @@
  * @created    2023-01-30
  * @version    1.0
  * @package    op-unit-cd
- * @author     Tomoaki Nagahara <tomoaki.nagahara@gmail.com>
+ * @author     Tomoaki Nagahara
  * @copyright  Tomoaki Nagahara All right reserved.
  */
+
+/**	namespace
+ *
+ */
+namespace OP\UNIT\CD;
+
 //	...
 return [
 	'branch' => [
