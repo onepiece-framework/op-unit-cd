@@ -19,7 +19,6 @@ namespace OP\UNIT\CD;
 return [
 	'branch' => [
 		'main',
-		'master',
 		'2020',
 		'2022',
 		'2023',
